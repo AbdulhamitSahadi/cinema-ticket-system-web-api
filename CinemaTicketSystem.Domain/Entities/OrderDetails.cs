@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CinemaTicketSystem.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.Marshalling;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CinemaTicketSystem.Domain.Entities
 {
-    public class OrderDetails
+    public class OrderDetails : BaseAuditableEntity
     {
         public int Id { get; set; }
 

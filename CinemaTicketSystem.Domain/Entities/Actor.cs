@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CinemaTicketSystem.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CinemaTicketSystem.Domain.Entities
 {
-    public class Actor
+    public class Actor : BaseAuditableEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
