@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CinemaTicketSystem.Application.IRepositories
 {
-    public interface IRepository<T> where T : BaseEntity
+    public interface IRepository<TEntity> where TEntity : BaseEntity
     {
-        IQueryable<T> Table { get; }
-        IQueryable<T> TableNoTracking { get; }
+        IQueryable<TEntity> Table { get; }
+        IQueryable<TEntity> TableNoTracking { get; }
     }
 }

@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace CinemaTicketSystem.Application.IRepositories
 {
-    public interface IWriteRepository<T> : IRepository<T> where T : BaseEntity
+    public interface IWriteRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         #region Insert
-        T Add(T entity);
-        void AddRange(IEnumerable<T> entities);
+        TEntity Add(TEntity entity);
+        void AddRange(IEnumerable<TEntity> entities);
         #endregion
 
 
         #region Update
-        void Update(T entity);
-        void UpdateRange(IEnumerable<T> entities);
+        void Update(TEntity entity);
+        void UpdateRange(IEnumerable<TEntity> entities);
         #endregion
 
 
         #region Delete
-        void Delete(T entity);
-        void DeleteRange(IEnumerable<T> entities);
+        void Delete(TEntity entity);
+        void DeleteRange(IEnumerable<TEntity> entities);
         #endregion
 
 

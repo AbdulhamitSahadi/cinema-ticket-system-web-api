@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace CinemaTicketSystem.Application.IRepositories
 {
-    public interface IWriteAsyncRepository<T> : IRepository<T> where T : BaseEntity
+    public interface IWriteAsyncRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         #region Insert
-        Task<T> AddAsync(T entity);
-        Task AddRangeAsync(IEnumerable<T> entities);
+        Task<TEntity> AddAsync(TEntity entity);
+        Task AddRangeAsync(IEnumerable<TEntity> entities);
         #endregion
 
 
         #region Update
-        Task UpdateAsync(T entity);
-        Task UpdateRangeAsync(IEnumerable<T> entities);
+        Task UpdateAsync(TEntity entity);
+        Task UpdateRangeAsync(IEnumerable<TEntity> entities);
         #endregion
 
 
         #region
-        Task DeleteAsync(T entity);
-        Task DeleteRangeAsync(IEnumerable<T> entities);
+        Task DeleteAsync(TEntity entity);
+        Task DeleteRangeAsync(IEnumerable<TEntity> entities);
         #endregion
 
 

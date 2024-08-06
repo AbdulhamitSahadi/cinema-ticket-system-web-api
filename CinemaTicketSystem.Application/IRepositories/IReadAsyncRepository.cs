@@ -9,13 +9,13 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace CinemaTicketSystem.Application.IRepositories
 {
-    public interface IReadAsyncRepository<T> : IRepository<T> where T : BaseEntity
+    public interface IReadAsyncRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         #region GetAll
-        Task<IReadOnlyList<T>> GetAllAsync(Expression<Func<T, bool>>? expression = null);
-        Task<IPagigate<T>> GetAllPaginateAsync(Expression<Func<T, bool>>? expression = null,
-                                               Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-                                               Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+        Task<IReadOnlyList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? expression = null);
+        Task<IPagigate<TEntity>> GetAllPaginateAsync(Expression<Func<TEntity, bool>>? expression = null,
+                                               Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+                                               Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
                                                int index = 0,
                                                int size = 10,
                                                bool enableTracking = true,
@@ -25,7 +25,7 @@ namespace CinemaTicketSystem.Application.IRepositories
 
 
         #region Get
-        Task<T> GetAsync(Expression<Func<int, bool>> expression,
+        Task<TEntity> GetAsync(Expression<Func<int, bool>> expression,
                          bool enableTracking = true,
                          string? includeProperties = null);
         #endregion
