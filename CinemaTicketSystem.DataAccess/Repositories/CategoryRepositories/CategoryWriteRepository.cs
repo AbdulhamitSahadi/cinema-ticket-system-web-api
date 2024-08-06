@@ -12,5 +12,11 @@ namespace CinemaTicketSystem.DataAccess.Repositories.CategoryRepositories
 {
     public class CategoryWriteRepository : WriteAsyncRepository<Category, ApplicationDbContext>, ICategoryWriteRepository 
     {
+        private readonly ApplicationDbContext _context;
+
+        public CategoryWriteRepository(ApplicationDbContext context) : base(context)
+        {
+            _context = context;
+        }
     }
 }

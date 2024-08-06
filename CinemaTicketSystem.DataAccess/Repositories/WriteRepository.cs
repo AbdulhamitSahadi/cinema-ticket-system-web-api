@@ -2,6 +2,7 @@
 using CinemaTicketSystem.Domain.Common;
 using CinemaTicketSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,43 +15,54 @@ namespace CinemaTicketSystem.DataAccess.Repositories
         where TEntity : BaseEntity
         where TContext : DbContext
     {
-        public IQueryable<TEntity> Table => throw new NotImplementedException();
 
-        public IQueryable<TEntity> TableNoTracking => throw new NotImplementedException();
+
+        private readonly TContext _context;
+
+        public WriteRepository(TContext context)
+        {
+            _context = context;
+        }
+
+
+        public IQueryable<TEntity> Table => _context.Set<TEntity>();
+
+        public IQueryable<TEntity> TableNoTracking => _context.Set<TEntity>().AsNoTracking();
 
         public TEntity Add(TEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Add(entity);
+            return entity;
         }
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            _context.AddRange(entities);
         }
 
         public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Remove(entity);
         }
 
         public void DeleteRange(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            _context.RemoveRange(entities);
         }
 
         public int Save()
         {
-            throw new NotImplementedException();
+            return _context.SaveChanges();
         }
 
         public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Update(entity);
         }
 
         public void UpdateRange(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            _context.UpdateRange(entities);
         }
     }
 }

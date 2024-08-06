@@ -14,43 +14,53 @@ namespace CinemaTicketSystem.DataAccess.Repositories
         where TEntity : BaseEntity
         where TContext : DbContext
     {
-        public IQueryable<TEntity> Table => throw new NotImplementedException();
 
-        public IQueryable<TEntity> TableNoTracking => throw new NotImplementedException();
+        private readonly TContext _context;
 
-        public Task<TEntity> AddAsync(TEntity entity)
+        public WriteAsyncRepository(TContext context) : base(context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task AddRangeAsync(IEnumerable<TEntity> entities)
+
+        public IQueryable<TEntity> Table => _context.Set<TEntity>();
+
+        public IQueryable<TEntity> TableNoTracking => _context.Set<TEntity>().AsNoTracking();
+
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            await _context.Set<TEntity>().AddAsync(entity);
+            return entity;
         }
 
-        public Task DeleteAsync(TEntity entity)
+        public async Task AddRangeAsync(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            await _context.Set<TEntity>().AddRangeAsync(entities);
         }
 
-        public Task DeleteRangeAsync(IEnumerable<TEntity> entities)
+        public async Task DeleteAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Remove(entity);
         }
 
-        public Task<int> Save()
+        public async Task DeleteRangeAsync(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            _context.Set<TEntity>().RemoveRange(entities);
         }
 
-        public Task UpdateAsync(TEntity entity)
+        public async Task<int> Save()
         {
-            throw new NotImplementedException();
+            return await _context.SaveChangesAsync();
         }
 
-        public Task UpdateRangeAsync(IEnumerable<TEntity> entities)
+        public async Task UpdateAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Update(entity);
+        }
+
+        public async Task UpdateRangeAsync(IEnumerable<TEntity> entities)
+        {
+            _context.UpdateRange(entities);
         }
     }
 }
