@@ -1,5 +1,7 @@
 ﻿using CinemaTicketSystem.Application.IRepositories;
+using CinemaTicketSystem.Domain.Common;
 using CinemaTicketSystem.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
@@ -10,23 +12,33 @@ using System.Threading.Tasks;
 
 namespace CinemaTicketSystem.DataAccess.Repositories
 {
-    public class ReadAsyncRepository : ReadRepository, IReadAsyncRepository<Category>
+    public class ReadAsyncRepository<TEntity, TContext> : ReadRepository, IReadAsyncRepository<TEntity>
+        where TEntity : BaseEntity
+        where TContext : DbContext
     {
-        public IQueryable<Category> Table => throw new NotImplementedException();
+        public IQueryable<TEntity> Table => throw new NotImplementedException();
 
-        public IQueryable<Category> TableNoTracking => throw new NotImplementedException();
+        public IQueryable<TEntity> TableNoTracking => throw new NotImplementedException();
 
-        public Task<IReadOnlyList<Category>> GetAllAsync(Expression<Func<Category, bool>>? expression = null)
+        public Task<IReadOnlyList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? expression = null)
+        {
+            throw new NotImplementedException();
+        }
+         
+        public Task<IPagigate<TEntity>> GetAllPaginateAsync(Expression<Func<TEntity, bool>>? expression = null, 
+                                                            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, 
+                                                            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null, 
+                                                            int index = 0, 
+                                                            int size = 10, 
+                                                            bool enableTracking = true, 
+                                                            CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IPagigate<Category>> GetAllPaginateAsync(Expression<Func<Category, bool>>? expression = null, Func<IQueryable<Category>, IOrderedQueryable<Category>>? orderBy = null, Func<IQueryable<Category>, IIncludableQueryable<Category, object>>? include = null, int index = 0, int size = 10, bool enableTracking = true, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Category> GetAsync(Expression<Func<int, bool>> expression, bool enableTracking = true, string? includeProperties = null)
+        public Task<TEntity> GetAsync(Expression<Func<int, bool>> expression, 
+                                       bool enableTracking = true, 
+                                       string? includeProperties = null)
         {
             throw new NotImplementedException();
         }

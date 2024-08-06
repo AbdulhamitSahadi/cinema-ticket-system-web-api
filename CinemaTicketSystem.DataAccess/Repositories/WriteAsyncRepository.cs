@@ -1,5 +1,7 @@
 ﻿using CinemaTicketSystem.Application.IRepositories;
+using CinemaTicketSystem.Domain.Common;
 using CinemaTicketSystem.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,28 +10,30 @@ using System.Threading.Tasks;
 
 namespace CinemaTicketSystem.DataAccess.Repositories
 {
-    public class WriteAsyncRepository : WriteRepository, IWriteAsyncRepository<Category>
+    public class WriteAsyncRepository<TEntity, TContext> : WriteRepository<TEntity, TContext>, IWriteAsyncRepository<TEntity>
+        where TEntity : BaseEntity
+        where TContext : DbContext
     {
-        public IQueryable<Category> Table => throw new NotImplementedException();
+        public IQueryable<TEntity> Table => throw new NotImplementedException();
 
-        public IQueryable<Category> TableNoTracking => throw new NotImplementedException();
+        public IQueryable<TEntity> TableNoTracking => throw new NotImplementedException();
 
-        public Task<Category> AddAsync(Category entity)
+        public Task<TEntity> AddAsync(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task AddRangeAsync(IEnumerable<Category> entities)
+        public Task AddRangeAsync(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Category entity)
+        public Task DeleteAsync(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteRangeAsync(IEnumerable<Category> entities)
+        public Task DeleteRangeAsync(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }
@@ -39,12 +43,12 @@ namespace CinemaTicketSystem.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Category entity)
+        public Task UpdateAsync(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateRangeAsync(IEnumerable<Category> entities)
+        public Task UpdateRangeAsync(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }

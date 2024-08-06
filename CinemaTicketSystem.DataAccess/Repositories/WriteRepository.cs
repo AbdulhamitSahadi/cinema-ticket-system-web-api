@@ -1,5 +1,7 @@
 ﻿using CinemaTicketSystem.Application.IRepositories;
+using CinemaTicketSystem.Domain.Common;
 using CinemaTicketSystem.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,28 +10,30 @@ using System.Threading.Tasks;
 
 namespace CinemaTicketSystem.DataAccess.Repositories
 {
-    public class WriteRepository : IWriteRepository<Category>
+    public class WriteRepository<TEntity, TContext> : IWriteRepository<TEntity>
+        where TEntity : BaseEntity
+        where TContext : DbContext
     {
-        public IQueryable<Category> Table => throw new NotImplementedException();
+        public IQueryable<TEntity> Table => throw new NotImplementedException();
 
-        public IQueryable<Category> TableNoTracking => throw new NotImplementedException();
+        public IQueryable<TEntity> TableNoTracking => throw new NotImplementedException();
 
-        public Category Add(Category entity)
+        public TEntity Add(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public void AddRange(IEnumerable<Category> entities)
+        public void AddRange(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Category entity)
+        public void Delete(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteRange(IEnumerable<Category> entities)
+        public void DeleteRange(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }
@@ -39,12 +43,12 @@ namespace CinemaTicketSystem.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public void Update(Category entity)
+        public void Update(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateRange(IEnumerable<Category> entities)
+        public void UpdateRange(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }
