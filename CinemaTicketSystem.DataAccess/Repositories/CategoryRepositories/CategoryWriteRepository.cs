@@ -1,5 +1,6 @@
 ﻿using CinemaTicketSystem.Application.IRepositories;
 using CinemaTicketSystem.Application.IRepositories.CategoryRepositories;
+using CinemaTicketSystem.DataAccess.Data;
 using CinemaTicketSystem.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CinemaTicketSystem.DataAccess.Repositories.CategoryRepositories
 {
-    public class CategoryWriteRepository : WriteAsyncRepository, ICategoryWriteRepository 
+    public class CategoryWriteRepository : WriteAsyncRepository<Category, ApplicationDbContext>, ICategoryWriteRepository 
     {
     }
 }
