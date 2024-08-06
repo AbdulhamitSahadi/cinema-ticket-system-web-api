@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaTicketSystem.Domain", "CinemaTicketSystem.Domain\CinemaTicketSystem.Domain.csproj", "{F07CC1D5-83E0-4D00-8836-277AE9555EF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaTicketSystem.DataAccess", "CinemaTicketSystem.DataAccess\CinemaTicketSystem.DataAccess.csproj", "{C49D5D6B-EED8-491C-86D4-D5509A270DDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F07CC1D5-83E0-4D00-8836-277AE9555EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F07CC1D5-83E0-4D00-8836-277AE9555EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F07CC1D5-83E0-4D00-8836-277AE9555EF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C49D5D6B-EED8-491C-86D4-D5509A270DDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C49D5D6B-EED8-491C-86D4-D5509A270DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C49D5D6B-EED8-491C-86D4-D5509A270DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C49D5D6B-EED8-491C-86D4-D5509A270DDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
