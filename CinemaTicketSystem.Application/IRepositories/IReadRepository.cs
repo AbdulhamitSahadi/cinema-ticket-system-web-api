@@ -27,7 +27,7 @@ namespace CinemaTicketSystem.Application.IRepositories
 
 
         #region Get
-        T Get(Expression<Func<T, bool>> expression
+        T Get(Expression<Func<T, bool>> expression,
               bool enableTracking = true,
               string? includeProperties = null);
         #endregion

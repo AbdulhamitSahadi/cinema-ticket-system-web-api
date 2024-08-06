@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaTicketSystem.Domain",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaTicketSystem.DataAccess", "CinemaTicketSystem.DataAccess\CinemaTicketSystem.DataAccess.csproj", "{C49D5D6B-EED8-491C-86D4-D5509A270DDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaTicketSystem.Application", "CinemaTicketSystem.Application\CinemaTicketSystem.Application.csproj", "{7305F73D-265A-433F-B0CD-1BA6D597B35F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C49D5D6B-EED8-491C-86D4-D5509A270DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C49D5D6B-EED8-491C-86D4-D5509A270DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C49D5D6B-EED8-491C-86D4-D5509A270DDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7305F73D-265A-433F-B0CD-1BA6D597B35F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7305F73D-265A-433F-B0CD-1BA6D597B35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7305F73D-265A-433F-B0CD-1BA6D597B35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7305F73D-265A-433F-B0CD-1BA6D597B35F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
