@@ -14,4 +14,8 @@
     <ProjectReference Include="..\CinemaTicketSystem.Domain\CinemaTicketSystem.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Paging\" />
+  </ItemGroup>
+
 </Project>
