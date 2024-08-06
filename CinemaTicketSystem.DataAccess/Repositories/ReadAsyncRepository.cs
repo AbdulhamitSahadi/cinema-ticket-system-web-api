@@ -12,17 +12,33 @@ using System.Threading.Tasks;
 
 namespace CinemaTicketSystem.DataAccess.Repositories
 {
-    public class ReadAsyncRepository<TEntity, TContext> : ReadRepository, IReadAsyncRepository<TEntity>
+    public class ReadAsyncRepository<TEntity, TContext> : ReadRepository<TEntity, TContext>, IReadAsyncRepository<TEntity>
         where TEntity : BaseEntity
         where TContext : DbContext
     {
-        public IQueryable<TEntity> Table => throw new NotImplementedException();
 
-        public IQueryable<TEntity> TableNoTracking => throw new NotImplementedException();
+        private readonly TContext _context;
 
-        public Task<IReadOnlyList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? expression = null)
+        public ReadAsyncRepository(TContext context) : base(context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public IQueryable<TEntity> Table => _context.Set<TEntity>();
+
+        public IQueryable<TEntity> TableNoTracking => Table.AsNoTracking();
+
+        public async Task<IReadOnlyList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? expression = null)
+        {
+
+            IQueryable<TEntity> query = Table;
+
+            if(expression != null)
+            {
+                query = query.Where(expression);
+            }
+
+            return await query.ToListAsync();
         }
          
         public Task<IPagigate<TEntity>> GetAllPaginateAsync(Expression<Func<TEntity, bool>>? expression = null, 
@@ -36,11 +52,29 @@ namespace CinemaTicketSystem.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<TEntity> GetAsync(Expression<Func<int, bool>> expression, 
+
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression, 
                                        bool enableTracking = true, 
                                        string? includeProperties = null)
         {
-            throw new NotImplementedException();
+
+            IQueryable<TEntity> query = Table;
+
+            query = query.Where(expression);
+
+            if (!enableTracking)
+                query = query.AsNoTracking();
+
+            if(includeProperties != null)
+            {
+                foreach(var property in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(property);
+                }
+            }
+
+            return await query.FirstOrDefaultAsync();
+
         }
     }
 }

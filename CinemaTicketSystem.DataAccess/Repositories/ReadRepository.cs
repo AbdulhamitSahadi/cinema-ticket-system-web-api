@@ -16,22 +16,57 @@ namespace CinemaTicketSystem.DataAccess.Repositories
         where TEntity : BaseEntity
         where TContext : DbContext
     {
-        public IQueryable<TEntity> Table => throw new NotImplementedException();
 
-        public IQueryable<TEntity> TableNoTracking => throw new NotImplementedException();
+        private readonly TContext _context;
+
+        public ReadRepository(TContext context)
+        {
+            _context = context;
+        }
+
+        public IQueryable<TEntity> Table => _context.Set<TEntity>();
+
+        public IQueryable<TEntity> TableNoTracking => _context.Set<TEntity>().AsNoTracking();
 
         public TEntity Get(Expression<Func<TEntity, bool>> expression, 
                            bool enableTracking = true, 
                            string? includeProperties = null)
         {
-            throw new NotImplementedException();
+
+            IQueryable<TEntity> query = Table;
+
+            query = query.Where(expression);
+
+            if (!enableTracking)
+                query = query.AsNoTracking();
+
+            if(includeProperties != null)
+            {
+                foreach(var property in includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(property);
+                }
+            }
+
+
+            return query.FirstOrDefault();   
         }
 
         public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>>? expression, 
                                             bool enableTracking = true, 
                                             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            IQueryable<TEntity> query = Table;
+
+            if(expression != null)
+            {
+                query = query.Where(expression);
+            }
+
+            if(!enableTracking)
+                query = query.AsNoTracking();
+
+            return query.ToList();
         }
 
         public IPaginate<TEntity> GetAllPaginate(Expression<Func<TEntity, bool>>? expression = null, 
